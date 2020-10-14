@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
 import './pages/pages.dart';
 
 void main() {
+  /// User Below Configuration to fix orientation.
+  /* WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]); */
   runApp(MyApp());
 }
 

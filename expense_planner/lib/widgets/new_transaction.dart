@@ -1,3 +1,5 @@
+import 'package:expense_planner/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -54,52 +56,55 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-                controller: _titleController,
-                decoration: InputDecoration(labelText: 'title'),
-                onSubmitted: (_) => _sumitTransaction()),
-            TextField(
-              controller: _amountController,
-              decoration: InputDecoration(labelText: 'amount'),
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _sumitTransaction(),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'No Date Choosen!!!'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: () => _presentDatePicker(context),
-                    child: Text(
-                      'Choose Date',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    textColor: Theme.of(context).primaryColor,
-                  )
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10.0,
+            right: 10.0,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                  controller: _titleController,
+                  decoration: InputDecoration(labelText: 'title'),
+                  onSubmitted: (_) => _sumitTransaction()),
+              TextField(
+                controller: _amountController,
+                decoration: InputDecoration(labelText: 'amount'),
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (_) => _sumitTransaction(),
               ),
-            ),
-            RaisedButton(
-              onPressed: _sumitTransaction,
-              child: Text('Add Transaction'),
-              color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).textTheme.button.color,
-            )
-          ],
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'No Date Choosen!!!'
+                            : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
+                      ),
+                    ),
+                    AdaptiveFlatButton(
+                      title: 'Choose Date',
+                      handler: () => _presentDatePicker(context),
+                    )
+                  ],
+                ),
+              ),
+              RaisedButton(
+                onPressed: _sumitTransaction,
+                child: Text('Add Transaction'),
+                color: Theme.of(context).primaryColor,
+                textColor: Theme.of(context).textTheme.button.color,
+              )
+            ],
+          ),
         ),
       ),
     );
