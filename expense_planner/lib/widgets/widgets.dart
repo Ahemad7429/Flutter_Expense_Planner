@@ -1,3 +1,4 @@
 export './transaction_list.dart';
 export './new_transaction.dart';
-export './user_transactions.dart';
+export './chart.dart';
+export './chart_bar.dart';
